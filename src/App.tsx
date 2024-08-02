@@ -1,11 +1,11 @@
-import Login from "./containers/Login";
+import Login from './containers/Login'
 
 function App() {
-  return (
-    <div>
-      <Login />
-    </div>
-  );
+	return (
+		<div>
+			<Login />
+		</div>
+	)
 }
 
-export default App;
+export default App
