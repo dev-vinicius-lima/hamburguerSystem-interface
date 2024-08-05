@@ -1,19 +1,54 @@
-import { Container, LoginImage, ContainerItens, Input, Label, P, Button, SignLink } from './styles'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import * as Yup from 'yup'
 
+import { Container, LoginImage, ContainerItens, Input, Label, P, Button, SignLink, ErrorMessage } from './styles'
+
+interface Inputs {
+	email: string
+	password: string
+}
+
+const schema = Yup.object().shape({
+	email: Yup.string().email('Email inválido').required('O campo Email é obrigatório!'),
+	password: Yup.string().required('O campo Senha é obrigatória!').min(6, 'A senha deve ter pelo menos 6 digitos!'),
+})
 function Login() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<Inputs>({
+		resolver: yupResolver(schema),
+	})
+	const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+
 	return (
 		<Container>
-			<LoginImage>
-				<img src="" alt="" />
-			</LoginImage>
+			<LoginImage />
 			<ContainerItens>
-				<img src="" alt="" />
 				<h1>Login</h1>
-				<Label htmlFor="email">Email:</Label>
-				<Input type="text" placeholder="Email" id="exemplo@exemplo.com" />
-				<Label htmlFor="password">Password:</Label>
-				<Input type="password" placeholder="********" id="password" />
-				<Button>Entrar</Button>
+				<form noValidate onSubmit={handleSubmit(onSubmit)}>
+					<Label htmlFor="email">Email:</Label>
+					<Input
+						type="email"
+						placeholder="exemplo@exemplo.com"
+						id="email"
+						{...register('email')}
+						style={{ border: errors.email ? '3px solid #cb1819' : '' }}
+					/>
+					<ErrorMessage>{errors.email?.message}</ErrorMessage>
+					<Label htmlFor="password">Senha:</Label>
+					<Input
+						type="password"
+						placeholder="********"
+						id="password"
+						{...register('password')}
+						style={{ border: errors.password ? '3px solid #cb1819' : '' }}
+					/>
+					<ErrorMessage>{errors.password?.message}</ErrorMessage>
+					<Button type="submit">Entrar</Button>
+				</form>
 				<P>
 					Não possui uma conta? <SignLink href="">cadastre-se</SignLink>
 				</P>
