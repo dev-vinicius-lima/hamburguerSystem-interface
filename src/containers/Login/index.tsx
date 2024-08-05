@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 
+import apiBigFomee from '../../services/api'
 import { Container, LoginImage, ContainerItens, Input, Label, P, Button, SignLink, ErrorMessage } from './styles'
 
 interface Inputs {
@@ -21,7 +22,14 @@ function Login() {
 	} = useForm<Inputs>({
 		resolver: yupResolver(schema),
 	})
-	const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+	const onSubmit: SubmitHandler<Inputs> = async (clientData) => {
+		const response = await apiBigFomee.post('/sessions', {
+			email: clientData.email,
+			password: clientData.password,
+		})
+
+		console.log(response)
+	}
 
 	return (
 		<Container>
