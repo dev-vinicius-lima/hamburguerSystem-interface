@@ -1,11 +1,11 @@
-import Login from './containers/Login'
-// import Register from './containers/register'
+// import Login from './containers/Login'
+import Register from './containers/register'
 
 function App() {
 	return (
 		<div>
-			<Login />
-			{/* <Register /> */}
+			{/* <Login /> */}
+			<Register />
 		</div>
 	)
 }

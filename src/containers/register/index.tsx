@@ -1,5 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Button from '../../components/Button'
@@ -30,13 +32,24 @@ function Register() {
 		resolver: yupResolver(schema),
 	})
 	const onSubmit: SubmitHandler<Inputs> = async (clientData) => {
-		const response = await apiBigFomee.post('/users', {
-			name: clientData.name,
-			email: clientData.email,
-			password: clientData.password,
-		})
-
-		console.log(response)
+		try {
+			await apiBigFomee.post('/users', {
+				name: clientData.name,
+				email: clientData.email,
+				password: clientData.password,
+			})
+			if (apiBigFomee !== undefined) {
+				toast.success('Cadastrado efetuado com sucesso!', {
+					theme: 'dark',
+				})
+			}
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				toast.error('Email já existe! Tente outro email.', {
+					theme: 'dark',
+				})
+			}
+		}
 	}
 
 	return (

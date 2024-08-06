@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Button from '../../components/Button'
@@ -16,6 +17,30 @@ const schema = Yup.object().shape({
 	password: Yup.string().required('O campo Senha é obrigatória!').min(6, 'A senha deve ter pelo menos 6 digitos!'),
 })
 function Login() {
+	const notify = () =>
+		toast.success('Login efetuado com sucesso!', {
+			position: 'top-right',
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'dark',
+			transition: Bounce,
+		})
+	const errorNotify = () =>
+		toast.error('Email ou senha inválido!', {
+			position: 'top-right',
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'dark',
+			transition: Bounce,
+		})
 	const {
 		register,
 		handleSubmit,
@@ -24,12 +49,20 @@ function Login() {
 		resolver: yupResolver(schema),
 	})
 	const onSubmit: SubmitHandler<Inputs> = async (clientData) => {
-		const response = await apiBigFomee.post('/sessions', {
-			email: clientData.email,
-			password: clientData.password,
-		})
+		try {
+			const response = await apiBigFomee.post('/sessions', {
+				email: clientData.email,
+				password: clientData.password,
+			})
 
-		console.log(response)
+			if (response.data.token) {
+				localStorage.setItem('token', response.data.token)
+				notify()
+			}
+		} catch (error) {
+			console.log(error)
+			errorNotify()
+		}
 	}
 
 	return (
