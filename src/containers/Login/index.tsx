@@ -2,8 +2,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 
+import Button from '../../components/Button'
 import apiBigFomee from '../../services/api'
-import { Container, LoginImage, ContainerItens, Input, Label, P, Button, SignLink, ErrorMessage } from './styles'
+import { Container, LoginImage, ContainerItens, Input, Label, P, SignLink, ErrorMessage } from './styles'
 
 interface Inputs {
 	email: string
@@ -55,7 +56,9 @@ function Login() {
 						style={{ border: errors.password ? '3px solid #cb1819' : '' }}
 					/>
 					<ErrorMessage>{errors.password?.message}</ErrorMessage>
-					<Button type="submit">Entrar</Button>
+					<Button type={'submit'} style={{ margin: '15px 0' }}>
+						Entrar
+					</Button>
 				</form>
 				<P>
 					Não possui uma conta? <SignLink href="">cadastre-se</SignLink>
