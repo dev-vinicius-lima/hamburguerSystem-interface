@@ -13,13 +13,18 @@ interface Inputs {
 	password: string
 }
 
+interface UseUserReturn {
+	putUserData: (data: string) => void
+	userData: string
+}
+
 const schema = Yup.object().shape({
 	email: Yup.string().email('Email inválido').required('O campo Email é obrigatório!'),
 	password: Yup.string().required('O campo Senha é obrigatória!').min(6, 'A senha deve ter pelo menos 6 digitos!'),
 })
 function Login() {
-	const users = useUser()
-	console.log(users)
+	const { putUserData } = useUser() as UseUserReturn
+
 	const notify = () =>
 		toast.success('Login efetuado com sucesso!', {
 			position: 'top-right',
@@ -53,13 +58,14 @@ function Login() {
 	})
 	const onSubmit: SubmitHandler<Inputs> = async (clientData) => {
 		try {
-			const response = await apiBigFomee.post('/sessions', {
+			const { data } = await apiBigFomee.post('/sessions', {
 				email: clientData.email,
 				password: clientData.password,
 			})
+			putUserData(data)
 
-			if (response.data.token) {
-				localStorage.setItem('token', response.data.token)
+			if (data.token) {
+				localStorage.setItem('token', data.token)
 				notify()
 			}
 		} catch (error) {

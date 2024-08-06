@@ -1,13 +1,34 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const UserContext = createContext({})
 interface UserProviderProps {
 	children: React.ReactNode
 }
+interface putUserDataProps {
+	putUserData: (data: string) => void
+}
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-	const user = { name: 'Pedro', age: 22 }
-	return <UserContext.Provider value={user}>{children}</UserContext.Provider>
+	const [userData, setUserData] = useState({})
+
+	const putUserData = async (userInfo: putUserDataProps) => {
+		setUserData(userInfo)
+
+		await localStorage.setItem('bigFomee: userData', JSON.stringify(userInfo))
+	}
+
+	useEffect(() => {
+		const loadUserData = async () => {
+			const clientInfo = await localStorage.getItem('bigFomee: userData')
+			if (clientInfo) {
+				setUserData(JSON.parse(clientInfo))
+			}
+		}
+
+		loadUserData()
+	}, [])
+
+	return <UserContext.Provider value={{ putUserData, userData }}>{children}</UserContext.Provider>
 }
 
 export const useUser = () => {
