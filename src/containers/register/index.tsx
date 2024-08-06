@@ -1,12 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Button from '../../components/Button'
 import apiBigFomee from '../../services/api'
-import { Container, RegisterImage, ContainerItens, Input, Label, P, SignLink, ErrorMessage } from './styles'
+import { Container, RegisterImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
 
 interface Inputs {
 	name: string
@@ -114,7 +115,10 @@ function Register() {
 					</Button>
 				</form>
 				<P>
-					Já possui uma conta? <SignLink href="">Entrar</SignLink>
+					Já possui uma conta?
+					<Link to={'/login'} id="SignLink">
+						Entrar
+					</Link>
 				</P>
 			</ContainerItens>
 		</Container>

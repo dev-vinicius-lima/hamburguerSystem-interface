@@ -1,12 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Button from '../../components/Button'
 import { useUser } from '../../hooks/UserContext'
 import apiBigFomee from '../../services/api'
-import { Container, LoginImage, ContainerItens, Input, Label, P, SignLink, ErrorMessage } from './styles'
+import { Container, LoginImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
 
 interface Inputs {
 	email: string
@@ -103,7 +104,10 @@ function Login() {
 					</Button>
 				</form>
 				<P>
-					Não possui uma conta? <SignLink href="">cadastre-se</SignLink>
+					Não possui uma conta?
+					<Link to={'/cadastro'} id="SignLink">
+						cadastre-se
+					</Link>
 				</P>
 			</ContainerItens>
 		</Container>

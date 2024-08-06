@@ -17,6 +17,17 @@ export const Container = styled.div`
 		align-items: center;
 		margin: 0 auto;
 	}
+
+	#SignLink {
+		color: #cb1819;
+		font-weight: bold;
+		font-size: 18px;
+		padding: 0px 10px;
+
+		@media screen and (min-width: 768px) {
+			font-size: 24px;
+		}
+	}
 `
 
 export const RegisterImage = styled.div`
@@ -122,17 +133,6 @@ export const P = styled.p`
 	display: flex;
 	align-items: center;
 	font-size: 18px;
-	@media screen and (min-width: 768px) {
-		font-size: 24px;
-	}
-`
-
-export const SignLink = styled.a`
-	color: #cb1819;
-	font-weight: bold;
-	font-size: 18px;
-	padding: 0px 10px;
-
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
 	}
