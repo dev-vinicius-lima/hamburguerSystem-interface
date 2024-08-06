@@ -4,6 +4,7 @@ import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import Button from '../../components/Button'
+import { useUser } from '../../hooks/UserContext'
 import apiBigFomee from '../../services/api'
 import { Container, LoginImage, ContainerItens, Input, Label, P, SignLink, ErrorMessage } from './styles'
 
@@ -17,6 +18,8 @@ const schema = Yup.object().shape({
 	password: Yup.string().required('O campo Senha é obrigatória!').min(6, 'A senha deve ter pelo menos 6 digitos!'),
 })
 function Login() {
+	const users = useUser()
+	console.log(users)
 	const notify = () =>
 		toast.success('Login efetuado com sucesso!', {
 			position: 'top-right',
