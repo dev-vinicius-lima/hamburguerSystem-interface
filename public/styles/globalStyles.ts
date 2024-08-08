@@ -7,8 +7,12 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: #000000;
+    background-color: #fff;
   }
-
-
 `
+
+// #fb8b0d larange
+// #D62300 red
+// #fff white
+// #f2e5d4 gray
+// #502314 brown

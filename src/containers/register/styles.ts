@@ -8,7 +8,7 @@ export const Container = styled.div`
 	align-items: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: #000000;
+	background-color: #fff;
 
 	@media screen and (min-width: 1300px) {
 		display: flex;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 	}
 
 	#SignLink {
-		color: #cb1819;
+		color: #fb8b0d;
 		font-weight: bold;
 		font-size: 18px;
 		padding: 0px 10px;
@@ -45,7 +45,7 @@ export const RegisterImage = styled.div`
 
 export const ContainerItens = styled.div`
 	h1 {
-		color: #cb1819;
+		color: #502314;
 		font-weight: bold;
 		font-size: 45px;
 		text-align: center;
@@ -66,7 +66,7 @@ export const ContainerItens = styled.div`
 		width: 100%;
 	}
 
-	color: #ffff;
+	color: #502314;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -94,7 +94,7 @@ export const Label = styled.label`
 	width: 95%;
 	margin: 0px 0px 10px 0px;
 	font-size: 24px;
-	color: #fa8b0d;
+	color: #502314;
 	font-weight: bold;
 
 	@media screen and (min-width: 768px) {
@@ -108,7 +108,7 @@ export const Input = styled.input`
 	align-items: center;
 	font-size: 24px;
 	flex-direction: column;
-	background-color: #eeeeee;
+	background-color: #f2e5d4;
 	width: 100%;
 	padding: 10px 10px;
 	border-radius: 10px;
@@ -133,6 +133,7 @@ export const P = styled.p`
 	display: flex;
 	align-items: center;
 	font-size: 18px;
+	color: #502314;
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
 	}

@@ -5,17 +5,19 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+	background-color: #f2e5d4;
 `
 export const ContainerHeader = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	height: auto;
+	max-height: 340px;
+	margin-bottom: 2rem;
 `
 
 export const ImgHome = styled.img`
 	width: 100%;
-	height: auto;
+	height: 400px;
 	object-fit: cober;
 `

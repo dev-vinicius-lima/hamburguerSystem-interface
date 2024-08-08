@@ -1,5 +1,6 @@
 import logoHome from '../../assets/BANNERHome.png'
 import CategoryCarousel from '../../components/CategoryCarousel'
+import OffersCarousel from '../../components/OffersCarousel'
 import { Container, ContainerHeader, ImgHome } from './styles'
 const Index = () => {
 	return (
@@ -8,6 +9,7 @@ const Index = () => {
 				<ImgHome src={logoHome} />
 			</ContainerHeader>
 			<CategoryCarousel />
+			<OffersCarousel />
 		</Container>
 	)
 }

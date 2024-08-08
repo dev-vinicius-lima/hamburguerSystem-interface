@@ -35,7 +35,7 @@ function Login() {
 			pauseOnHover: true,
 			draggable: true,
 			progress: undefined,
-			theme: 'dark',
+			theme: 'light',
 			transition: Bounce,
 		})
 	const errorNotify = () =>
