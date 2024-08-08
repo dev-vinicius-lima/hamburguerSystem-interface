@@ -67,6 +67,9 @@ function Login() {
 
 			if (data.token) {
 				localStorage.setItem('token', data.token)
+				setTimeout(() => {
+					window.location.replace('/')
+				}, 1000)
 				notify()
 			}
 		} catch (error) {
