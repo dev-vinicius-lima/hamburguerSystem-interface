@@ -20,11 +20,13 @@ interface ProductProps {
 	offer: boolean
 	price: number
 	formatedPrice: string
+	category_id: number
 }
 
 const Products = () => {
 	const [categories, setCategories] = useState<CategoryProps[]>([])
 	const [products, setProducts] = useState<ProductProps[]>([])
+	const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([])
 	const [activeCategory, setActiveCategory] = useState(0)
 	useEffect(() => {
 		async function loadCategories() {
@@ -50,6 +52,14 @@ const Products = () => {
 		loadProducts()
 	}, [])
 
+	useEffect(() => {
+		const newFilteredProducts = products.filter((product) => {
+			return product.category_id === activeCategory || activeCategory === 0
+		})
+
+		setFilteredProducts(newFilteredProducts)
+	}, [activeCategory, products])
+
 	return (
 		<Container>
 			<ContainerHeader>
@@ -72,7 +82,9 @@ const Products = () => {
 					))}
 			</CategoryMenu>
 			<ProductContainer>
-				{products && products.map((product) => <CardProducts key={product.id} product={product} />)}
+				{filteredProducts.map((product) => (
+					<CardProducts key={product.id} product={product} />
+				))}
 			</ProductContainer>
 		</Container>
 	)
