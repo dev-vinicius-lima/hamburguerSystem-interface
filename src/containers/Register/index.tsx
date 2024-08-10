@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import Button from '../../components/Button'
+import { Button } from '../../components'
 import apiBigFomee from '../../services/api'
 import { Container, RegisterImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
 
@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
 		.required('O campo Senha é obrigatória!')
 		.oneOf([Yup.ref('password')], 'As senhas devem ser iguais!'),
 })
-function Register() {
+export function Register() {
 	const {
 		register,
 		handleSubmit,
@@ -124,4 +124,3 @@ function Register() {
 		</Container>
 	)
 }
-export default Register

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import Button from '../../components/Button'
+import { Button } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import apiBigFomee from '../../services/api'
 import { Container, LoginImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
@@ -23,7 +23,7 @@ const schema = Yup.object().shape({
 	email: Yup.string().email('Email inválido').required('O campo Email é obrigatório!'),
 	password: Yup.string().required('O campo Senha é obrigatória!').min(6, 'A senha deve ter pelo menos 6 digitos!'),
 })
-function Login() {
+export function Login() {
 	const { putUserData } = useUser() as UseUserReturn
 
 	const notify = () =>
@@ -116,4 +116,3 @@ function Login() {
 		</Container>
 	)
 }
-export default Login

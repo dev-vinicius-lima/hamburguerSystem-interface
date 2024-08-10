@@ -1,5 +1,5 @@
 import Login from './containers/Login'
-import Register from './containers/register'
+import Register from './containers/Register'
 
 function App() {
 	return (

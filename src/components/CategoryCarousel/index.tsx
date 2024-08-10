@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigation, Pagination, Scrollbar, Keyboard, Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Button } from '../../components'
 import api from '../../services/api'
 import { Container, ContainerItens } from './styles'
 
@@ -10,7 +11,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import 'swiper/css'
 import 'swiper/css/autoplay'
-import Button from '../Button'
 
 interface CategoryProps {
 	id: number
@@ -18,7 +18,7 @@ interface CategoryProps {
 	url: string
 }
 
-const CategoryCarousel = () => {
+export const CategoryCarousel = () => {
 	const [categories, setCategories] = useState<CategoryProps[]>([])
 	useEffect(() => {
 		async function loadCategories() {
@@ -56,5 +56,3 @@ const CategoryCarousel = () => {
 		</>
 	)
 }
-
-export default CategoryCarousel

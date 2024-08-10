@@ -1,8 +1,7 @@
 import logoHome from '../../assets/BANNERHome.png'
-import CategoryCarousel from '../../components/CategoryCarousel'
-import OffersCarousel from '../../components/OffersCarousel'
+import { CategoryCarousel, OffersCarousel } from '../../components'
 import { Container, ContainerHeader, ImgHome } from './styles'
-const Index = () => {
+export const Index = () => {
 	return (
 		<Container>
 			<ContainerHeader>
@@ -13,5 +12,3 @@ const Index = () => {
 		</Container>
 	)
 }
-
-export default Index

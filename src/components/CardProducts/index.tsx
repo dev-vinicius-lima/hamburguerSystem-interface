@@ -1,4 +1,4 @@
-import Button from '../Button'
+import { Button } from '../../components'
 import { Container, ProductName, ProductPrice } from './styles'
 
 interface CardProductsProps {
@@ -12,7 +12,7 @@ interface CardProductsProps {
 	}
 }
 
-const CardProducts = ({ product }: CardProductsProps) => {
+export const CardProducts = ({ product }: CardProductsProps) => {
 	return (
 		<Container>
 			<img src={product.url} alt={product.name} />
@@ -24,5 +24,3 @@ const CardProducts = ({ product }: CardProductsProps) => {
 		</Container>
 	)
 }
-
-export default CardProducts

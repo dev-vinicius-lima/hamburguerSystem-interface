@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import logoHome from '../../assets/bannerHamburguer.png'
-import CardProducts from '../../components/CardProducts/Index'
+import { CardProducts } from '../../components'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
 import { CategoryButton, CategoryMenu, Container, ContainerHeader, ImgProducts, ProductContainer } from './styles'
@@ -23,7 +23,7 @@ interface ProductProps {
 	category_id: number
 }
 
-const Products = () => {
+export const Products = () => {
 	const [categories, setCategories] = useState<CategoryProps[]>([])
 	const [products, setProducts] = useState<ProductProps[]>([])
 	const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([])
@@ -89,5 +89,3 @@ const Products = () => {
 		</Container>
 	)
 }
-
-export default Products

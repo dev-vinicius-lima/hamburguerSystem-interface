@@ -4,11 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import GlobalStyles from '../public/styles/globalStyles.ts'
-import NotFound from './containers/error/error-page.tsx'
-import Index from './containers/Home/Index.tsx'
-import Login from './containers/Login/index.tsx'
-import Products from './containers/Products/Index.tsx'
-import Register from './containers/register/index.tsx'
+import { NotFound, Login, Register, Index, Products } from './containers'
 import { UserProvider } from './hooks/UserContext.tsx'
 import PrivateRoutes from './PrivateRoutes.tsx'
 

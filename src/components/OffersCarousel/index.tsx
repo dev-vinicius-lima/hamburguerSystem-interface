@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { Navigation, Pagination, Scrollbar, Keyboard, Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Button } from '../../components'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
-import Button from '../Button'
 import { Container, ContainerItens, CardProduct } from './styles'
 
 import 'swiper/css/navigation'
@@ -31,7 +31,7 @@ interface ProductProps {
 	price: number
 }
 
-const OffersCarousel = () => {
+export const OffersCarousel = () => {
 	const [offers, setOffers] = useState<OffersCarouselProps[]>([])
 	useEffect(() => {
 		async function loadOffers() {
@@ -84,5 +84,3 @@ const OffersCarousel = () => {
 		</>
 	)
 }
-
-export default OffersCarousel

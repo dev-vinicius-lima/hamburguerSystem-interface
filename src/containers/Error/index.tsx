@@ -3,7 +3,7 @@ import { Link, useRouteError } from 'react-router-dom'
 import './styles.ts'
 import { Container } from './styles.ts'
 
-const NotFound = () => {
+export const NotFound = () => {
 	const error = useRouteError()
 	console.log(error)
 	return (
@@ -15,5 +15,3 @@ const NotFound = () => {
 		</Container>
 	)
 }
-
-export default NotFound
