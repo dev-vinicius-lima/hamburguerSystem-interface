@@ -1,4 +1,5 @@
 import { Button } from '../../components'
+import { useCart } from '../../hooks/CartContext'
 import { Container, ProductName, ProductPrice } from './styles'
 
 interface CardProductsProps {
@@ -9,17 +10,25 @@ interface CardProductsProps {
 		offer: boolean
 		price: number
 		formatedPrice: string
+		quantity: number
 	}
 }
 
 export const CardProducts = ({ product }: CardProductsProps) => {
+	const { putProductsInCart } = useCart()
 	return (
 		<Container>
 			<img src={product.url} alt={product.name} />
 			<div>
 				<ProductName>{product.name}</ProductName>
 				<ProductPrice>{product.formatedPrice}</ProductPrice>
-				<Button>Adicionar</Button>
+				<Button
+					onClick={() => {
+						putProductsInCart(product)
+					}}
+				>
+					Adicionar
+				</Button>
 			</div>
 		</Container>
 	)

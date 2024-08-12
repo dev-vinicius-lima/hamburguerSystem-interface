@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify'
 
 import GlobalStyles from '../public/styles/globalStyles.ts'
 import { NotFound, Login, Register, Index, Products } from './containers'
-import { UserProvider } from './hooks/UserContext.tsx'
+import { AppProvider } from './hooks'
 import PrivateRoutes from './PrivateRoutes.tsx'
 
 const router = createBrowserRouter([
@@ -35,9 +35,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<UserProvider>
+		<AppProvider>
 			<RouterProvider router={router} />
-		</UserProvider>
+		</AppProvider>
 		<GlobalStyles />
 		<ToastContainer />
 	</React.StrictMode>,
