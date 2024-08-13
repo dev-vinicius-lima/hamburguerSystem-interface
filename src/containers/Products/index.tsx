@@ -21,6 +21,7 @@ interface ProductProps {
 	price: number
 	formatedPrice: string
 	category_id: number
+	quantity: number
 }
 
 export const Products = () => {
@@ -73,7 +74,6 @@ export const Products = () => {
 							onClick={() => setActiveCategory(category.id)}
 							style={{
 								color: category.id === activeCategory ? '#fa8b0d' : '',
-								// backgroundColor: category.id === activeCategory ? '#f2e5d4d5' : '',
 								borderBottom: category.id === activeCategory ? '3px solid #fa8b0d' : '',
 							}}
 						>

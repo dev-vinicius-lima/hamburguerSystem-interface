@@ -2,7 +2,9 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 interface CartContextProps {
 	putProductsInCart: (product: Product) => void
-	cartProdutcs: Product[]
+	cartProducts: Product[]
+	increaseProductsQuantity: (productId: Product) => void
+	decreaseProductsQuantity: (productId: Product) => void
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined)
@@ -21,18 +23,24 @@ interface Product {
 }
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-	const [cartProdutcs, setCartProdutcs] = useState<Product[]>([])
+	const [cartProducts, setCartProdutcs] = useState<Product[]>([])
+
+	const deleteProductInCart = async (productId: Product) => {
+		const newCart = cartProducts.filter((product) => product.id !== productId.id)
+		setCartProdutcs(newCart)
+		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(newCart))
+	}
 
 	const putProductsInCart = async (product: Product) => {
-		const cartIndex = cartProdutcs.findIndex((pdt) => pdt.id === product.id)
+		const cartIndex = cartProducts.findIndex((pdt) => pdt.id === product.id)
 		let newCartProducts = []
 		if (cartIndex >= 0) {
-			newCartProducts = cartProdutcs
+			newCartProducts = cartProducts
 			newCartProducts[cartIndex].quantity += 1
 			setCartProdutcs(newCartProducts)
 		} else {
 			product.quantity = 1
-			newCartProducts = [...cartProdutcs, product]
+			newCartProducts = [...cartProducts, product]
 			setCartProdutcs(newCartProducts)
 		}
 		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(newCartProducts))
@@ -49,7 +57,42 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		loadUserData()
 	}, [])
 
-	return <CartContext.Provider value={{ putProductsInCart, cartProdutcs }}>{children}</CartContext.Provider>
+	const increaseProductsQuantity = async (productId: Product) => {
+		const newCart = cartProducts.map((product) => {
+			return product.id === productId.id ? { ...product, quantity: product.quantity + 1 } : product
+		})
+		setCartProdutcs(newCart)
+		const clientCartData = await localStorage.getItem('bigFomee: CartInfo')
+		if (clientCartData) {
+			setCartProdutcs(newCart)
+		}
+	}
+
+	const decreaseProductsQuantity = async (productId: Product) => {
+		const cartIndex = cartProducts.findIndex((pdt) => pdt.id === productId.id)
+
+		if (cartProducts[cartIndex].quantity > 1) {
+			const newCart = cartProducts.map((product) => {
+				return product.id === productId.id ? { ...product, quantity: product.quantity - 1 } : product
+			})
+
+			setCartProdutcs(newCart)
+			const clientCartData = await localStorage.getItem('bigFomee: CartInfo')
+			if (clientCartData) {
+				setCartProdutcs(newCart)
+			}
+		} else {
+			deleteProductInCart(productId)
+		}
+	}
+
+	return (
+		<CartContext.Provider
+			value={{ putProductsInCart, cartProducts, increaseProductsQuantity, decreaseProductsQuantity }}
+		>
+			{children}
+		</CartContext.Provider>
+	)
 }
 
 export const useCart = () => {

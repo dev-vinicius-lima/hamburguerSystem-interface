@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import GlobalStyles from '../public/styles/globalStyles.ts'
-import { NotFound, Login, Register, Index, Products } from './containers'
+import { NotFound, Login, Register, Index, Products, Cart } from './containers'
 import { AppProvider } from './hooks'
 import PrivateRoutes from './PrivateRoutes.tsx'
 
@@ -30,6 +30,14 @@ const router = createBrowserRouter([
 	{
 		path: '/produtos',
 		element: <Products />,
+	},
+	{
+		path: '/carrinho',
+		element: (
+			<PrivateRoutes>
+				<Cart />
+			</PrivateRoutes>
+		),
 	},
 ])
 
