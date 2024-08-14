@@ -17,6 +17,11 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 		await localStorage.setItem('bigFomee: userData', JSON.stringify(userInfo))
 	}
 
+	const logout = () => {
+		localStorage.removeItem('bigFomee: userData')
+		setUserData({})
+	}
+
 	useEffect(() => {
 		const loadUserData = async () => {
 			const clientInfo = await localStorage.getItem('bigFomee: userData')
@@ -28,7 +33,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 		loadUserData()
 	}, [])
 
-	return <UserContext.Provider value={{ putUserData, userData }}>{children}</UserContext.Provider>
+	return <UserContext.Provider value={{ putUserData, userData, logout }}>{children}</UserContext.Provider>
 }
 
 export const useUser = () => {

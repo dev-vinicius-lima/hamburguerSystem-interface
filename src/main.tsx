@@ -29,7 +29,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/produtos',
-		element: <Products />,
+		element: (
+			<PrivateRoutes>
+				<Products />,
+			</PrivateRoutes>
+		),
 	},
 	{
 		path: '/carrinho',
