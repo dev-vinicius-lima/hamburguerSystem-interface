@@ -5,15 +5,16 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	border-radius: 20px;
 	background-color: #fff;
 	padding: 10px;
-	width: 50%;
+	width: 40%;
+	max-height: 300px;
+	border-radius: 20px;
 
 	#resumeContainerTop {
 		display: flex;
 		flex-direction: column;
-		width: 90%;
+		width: 96%;
 		margin: 10px;
 
 		@media screen and (max-width: 768px) {
@@ -55,7 +56,7 @@ export const Container = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 90%;
+		width: 96%;
 		margin: 10px;
 		font-size: 22px;
 		margin-bottom: 1rem;

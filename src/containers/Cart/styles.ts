@@ -27,4 +27,8 @@ export const Wrapper = styled.div`
 	justify-content: space-evenly;
 	margin-top: 30px;
 	padding-bottom: 30px;
+	width: 96%;
+	border-radius: 20px;
+	gap: 1rem;
+	background-color: #f2e5d4;
 `

@@ -29,7 +29,7 @@ export const Body = styled.div`
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	align-items: center;
-	width: 90%;
+	width: 96%;
 	padding: 10px;
 	grid-gap: 15px;
 	border-radius: 5px;
