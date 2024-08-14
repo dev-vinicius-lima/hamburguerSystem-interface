@@ -69,6 +69,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		const clientCartData = await localStorage.getItem('bigFomee: CartInfo')
 		if (clientCartData) {
 			setCartProdutcs(newCart)
+			await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(newCart))
 		}
 	}
 
