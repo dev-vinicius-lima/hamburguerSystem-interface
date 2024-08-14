@@ -25,10 +25,14 @@ interface Product {
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [cartProducts, setCartProdutcs] = useState<Product[]>([])
 
+	const updateLocalStorage = async (product: Product[]) => {
+		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(product))
+	}
+
 	const deleteProductInCart = async (productId: Product) => {
 		const newCart = cartProducts.filter((product) => product.id !== productId.id)
 		setCartProdutcs(newCart)
-		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(newCart))
+		updateLocalStorage(newCart)
 	}
 
 	const putProductsInCart = async (product: Product) => {
@@ -43,7 +47,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 			newCartProducts = [...cartProducts, product]
 			setCartProdutcs(newCartProducts)
 		}
-		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(newCartProducts))
+		updateLocalStorage(newCartProducts)
 	}
 
 	useEffect(() => {
