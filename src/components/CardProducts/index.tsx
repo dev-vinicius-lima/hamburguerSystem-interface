@@ -1,5 +1,5 @@
-import { Button } from '../../components'
 import { useCart } from '../../hooks/CartContext'
+import { Button } from '../Button'
 import { Container, ProductName, ProductPrice } from './styles'
 
 interface CardProductsProps {
@@ -24,8 +24,9 @@ export const CardProducts = ({ product }: CardProductsProps) => {
 				<ProductPrice>{product.formatedPrice}</ProductPrice>
 				<Button
 					onClick={() => {
-						putProductsInCart(product)
+						putProductsInCart({ ...product, quantity: 1 })
 					}}
+					id="link"
 				>
 					Adicionar
 				</Button>

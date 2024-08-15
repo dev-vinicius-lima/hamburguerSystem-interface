@@ -1,26 +1,53 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { useUser } from '../../hooks/UserContext'
 import { Icons } from '../Icons'
-import { Container, ContainerLeft, PageLink, ContainerRigth, ContainerText, Line } from './styles'
+import { Container, ContainerLeft, ContainerRigth, ContainerText, Line, PageLink } from './styles'
+
+interface UserData {
+	name: string
+	email: string
+}
 
 export const Header = () => {
+	const navigate = useNavigate()
 	const { pathname } = useLocation()
+	const { userData } = useUser() as { userData: UserData }
+
+	const isActiveLink = (link: string) => {
+		return pathname === link ? { color: '#fa8b0d' } : {}
+	}
 
 	const logoutUser = () => {
-		localStorage.removeItem('bigFomee: userData')
-		window.location.reload()
+		const confirmationLogout = window.confirm('Deseja realmente sair?')
+		if (confirmationLogout) {
+			localStorage.removeItem('bigFomee: userData')
+			navigate('/login')
+		}
+		isActiveLink
+		return
+	}
+
+	const counterProductsInCart = () => {
+		const clientCartData = localStorage.getItem('bigFomee: CartInfo')
+
+		if (clientCartData) {
+			return JSON.parse(clientCartData).length
+		}
+
+		return 0
 	}
 
 	return (
 		<Container>
 			<ContainerLeft>
 				<PageLink>
-					<Link to={'/'} id="link" style={{ color: pathname === '/' ? '#fa8b0d' : '' }}>
+					<Link to={'/'} id="link" style={isActiveLink('/')}>
 						Home
 					</Link>
 				</PageLink>
 				<PageLink>
-					<Link to={'/produtos'} id="link" style={{ color: pathname === '/produtos' ? '#fa8b0d' : '' }}>
+					<Link to={'/produtos'} id="link" style={isActiveLink('/produtos')}>
 						Produtos
 					</Link>
 				</PageLink>
@@ -29,7 +56,8 @@ export const Header = () => {
 			<ContainerRigth>
 				<PageLink style={{ color: pathname === '/produtos' ? '#fa8b0d' : '' }}>
 					<Link to={'/carrinho'} id="link">
-						{Icons.cart}{' '}
+						{Icons.cart}
+						{counterProductsInCart && <span>{counterProductsInCart()}</span>}
 					</Link>
 				</PageLink>
 				<Line></Line>
@@ -40,7 +68,7 @@ export const Header = () => {
 				</PageLink>
 
 				<ContainerText>
-					<p>Olá, Fulano</p>
+					<p>Olá, {userData?.name}</p>
 					<PageLink id="link" onClick={logoutUser}>
 						{Icons.logout} Sair
 					</PageLink>

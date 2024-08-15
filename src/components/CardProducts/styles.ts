@@ -23,6 +23,29 @@ export const Container = styled.div`
 		gap: 2rem;
 		align-items: center;
 	}
+
+	#link {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+		cursor: pointer;
+		background-color: #fa8b0d;
+		padding: 15px;
+		border-radius: 10px;
+		outline: none;
+		border: none;
+		font-weight: bold;
+		font-size: 24px;
+		color: #fff;
+		transition: all 0.25s ease-in-out;
+		&:hover {
+			background-color: transparent;
+			border: 1px solid #fa8b0d;
+			color: #fa8b0d;
+		}
+	}
 `
 export const ProductName = styled.p``
 export const ProductPrice = styled.p``

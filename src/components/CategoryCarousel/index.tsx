@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Navigation, Pagination, Scrollbar, Keyboard, Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Button } from '../../components'
 import api from '../../services/api'
 import { Container, ContainerItens } from './styles'
 
@@ -47,7 +47,15 @@ export const CategoryCarousel = () => {
 							<SwiperSlide key={category.id}>
 								<ContainerItens>
 									<img src={category.url} alt="imagem do carrossel" id="image" />
-									<Button>{category.name}</Button>
+									<Link
+										to={{
+											pathname: '/produtos',
+											search: `?category=${category.name}`,
+										}}
+										id="link"
+									>
+										{category.name}
+									</Link>
 								</ContainerItens>
 							</SwiperSlide>
 						))}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 import logoHome from '../../assets/bannerHamburguer.png'
 import { CardProducts } from '../../components'
@@ -25,15 +26,24 @@ interface ProductProps {
 }
 
 export const Products = () => {
+	const [searchParams] = useSearchParams()
 	const [categories, setCategories] = useState<CategoryProps[]>([])
 	const [products, setProducts] = useState<ProductProps[]>([])
 	const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([])
 	const [activeCategory, setActiveCategory] = useState(0)
+
 	useEffect(() => {
 		async function loadCategories() {
 			const { data } = await api.get('categories')
 
 			const newCategories = [{ id: 0, name: 'Todos' }, ...data]
+			if (searchParams.get('category')) {
+				newCategories.forEach((category) => {
+					if (category.name === searchParams.get('category')) {
+						setActiveCategory(category.id)
+					}
+				})
+			}
 
 			setCategories(newCategories)
 		}
@@ -48,7 +58,6 @@ export const Products = () => {
 			})
 			setProducts(allProductsFormatted)
 		}
-
 		loadCategories()
 		loadProducts()
 	}, [])

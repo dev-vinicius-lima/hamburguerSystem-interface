@@ -4,6 +4,7 @@ const UserContext = createContext({})
 interface UserProviderProps {
 	children: React.ReactNode
 }
+
 interface putUserDataProps {
 	putUserData: (data: string) => void
 }

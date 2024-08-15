@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Navigation, Pagination, Scrollbar, Keyboard, Autoplay } from 'swiper/modules'
+import { Link } from 'react-router-dom'
+import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Button } from '../../components'
+import { useCart } from '../../hooks/CartContext'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
-import { Container, ContainerItens, CardProduct } from './styles'
+import { CardProduct, Container, ContainerItens } from './styles'
 
+import 'swiper/css'
+import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-import 'swiper/css'
-import 'swiper/css/autoplay'
 
 interface OffersCarouselProps {
 	id: number
@@ -32,6 +33,7 @@ interface ProductProps {
 }
 
 export const OffersCarousel = () => {
+	const { putProductsInCart } = useCart()
 	const [offers, setOffers] = useState<OffersCarouselProps[]>([])
 	useEffect(() => {
 		async function loadOffers() {
@@ -74,8 +76,16 @@ export const OffersCarousel = () => {
 											<span>{offer.formatedPrice}</span>
 										</div>
 									</CardProduct>
-
-									<Button style={{ marginBottom: '16px' }}>Peça agora</Button>
+									<Link
+										to={'/carrinho'}
+										id="link"
+										onClick={() => {
+											putProductsInCart({ ...offer, quantity: 1 })
+										}}
+										style={{ marginTop: '10px' }}
+									>
+										Peça agora
+									</Link>
 								</ContainerItens>
 							</SwiperSlide>
 						))}
