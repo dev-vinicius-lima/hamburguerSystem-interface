@@ -1,5 +1,4 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -10,8 +9,12 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
+import { MdKeyboardArrowUp } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
-import { Container } from './styles'
+import apiBigFomee from '../../../services/api'
+import OrderStatus from './Order-status'
+import { ProdutcsImg, SelectStyled } from './styles'
 
 interface products {
 	category: string
@@ -39,22 +42,55 @@ interface createDataProps {
 function Row(props: { row: createDataProps }) {
 	const { row } = props
 	const [open, setOpen] = useState(false)
+	const [loading, setLoading] = useState(false)
 
+	async function setNewStatus(id: string, status: string) {
+		setLoading(true)
+		try {
+			await apiBigFomee.put(`orders/${id}`, { status })
+		} catch (error) {
+			toast.error('Erro ao alterar status do pedido', {
+				theme: 'light',
+			})
+			console.log(error)
+		} finally {
+			setLoading(false)
+			if (apiBigFomee !== undefined) {
+				toast.success('Status alterado com sucesso!', {
+					theme: 'light',
+				})
+			}
+		}
+	}
 	return (
-		<Container>
+		<>
 			<TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
 				<TableCell>
-					<IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+					<IconButton
+						aria-label="expand row"
+						size="medium"
+						onClick={() => setOpen(!open)}
+						color="default"
+						style={{ color: '#000' }}
+					>
+						{open ? <MdKeyboardArrowUp /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell component="th" scope="row">
-					{row._id}
-				</TableCell>
+				<TableCell>{row._id}</TableCell>
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{row.createdAt}</TableCell>
-				<TableCell>{row.status}</TableCell>
-				<TableCell>{row.products.length}</TableCell>
+				<TableCell>
+					<SelectStyled
+						options={OrderStatus}
+						menuPortalTarget={document.body}
+						placeholder="Selecione um status"
+						styles={{ input: (base) => ({ ...base, color: '#000', backgroundColor: 'transparent' }) }}
+						defaultValue={OrderStatus.find((status) => status.value === row.status || null)}
+						// eslint-disable-next-line @typescript-eslint/no-explicit-any
+						onChange={(newStatus) => setNewStatus(row._id, (newStatus as any).value)}
+						isLoading={loading}
+					/>
+				</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -74,14 +110,12 @@ function Row(props: { row: createDataProps }) {
 								</TableHead>
 								<TableBody>
 									{row.products.map((productRow) => (
-										<TableRow key={productRow.id}>
-											<TableCell component="th" scope="row">
-												{productRow.quantity}
-											</TableCell>
+										<TableRow key={productRow.url}>
+											<TableCell>{productRow.quantity}</TableCell>
 											<TableCell>{productRow.name}</TableCell>
 											<TableCell>{productRow.category}</TableCell>
 											<TableCell>
-												<img src={productRow.url} alt={productRow.name} />
+												<ProdutcsImg src={productRow.url} alt={productRow.name} />
 											</TableCell>
 										</TableRow>
 									))}
@@ -91,7 +125,7 @@ function Row(props: { row: createDataProps }) {
 					</Collapse>
 				</TableCell>
 			</TableRow>
-		</Container>
+		</>
 	)
 }
 

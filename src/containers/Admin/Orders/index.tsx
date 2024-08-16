@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow'
 import { useEffect, useState } from 'react'
 
 import apiBigFomee from '../../../services/api'
+import formatDate from '../../../utils/formatDate'
 import Row from './row'
 import { Container } from './styles'
 
@@ -46,11 +47,10 @@ const Orders = () => {
 	}, [])
 
 	function createData(order: OrderProps) {
-		console.log('order', order.user.name)
 		return {
 			name: order.user.name || 'Usuário não informado',
 			_id: order._id,
-			createdAt: order.createdAt,
+			createdAt: formatDate(order.createdAt),
 			status: order.status,
 			products: order.products,
 			user: order.user,
@@ -63,14 +63,15 @@ const Orders = () => {
 
 	return (
 		<Container>
-			<TableContainer component={Paper}>
+			<TableContainer component={Paper} id="Container">
 				<Table aria-label="collapsible table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Pedido</TableCell>
-							<TableCell>Cliente</TableCell>
-							<TableCell>Data</TableCell>
-							<TableCell>Status</TableCell>
+							<TableCell />
+							<TableCell align="left">Pedido</TableCell>
+							<TableCell align="left">Cliente</TableCell>
+							<TableCell align="left">Data</TableCell>
+							<TableCell align="left">Status</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
