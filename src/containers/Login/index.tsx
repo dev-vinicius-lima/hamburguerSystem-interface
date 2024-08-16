@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
@@ -25,6 +25,7 @@ const schema = Yup.object().shape({
 })
 export function Login() {
 	const { putUserData } = useUser() as UseUserReturn
+	const navigation = useNavigate()
 
 	const notify = () =>
 		toast.success('Login efetuado com sucesso!', {
@@ -67,8 +68,11 @@ export function Login() {
 
 			if (data.token) {
 				localStorage.setItem('token', data.token)
+
 				setTimeout(() => {
-					window.location.replace('/')
+					{
+						data.admin ? navigation('/pedidos') : navigation('/')
+					}
 				}, 1000)
 				notify()
 			}

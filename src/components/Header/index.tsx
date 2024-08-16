@@ -11,6 +11,7 @@ interface UserData {
 
 export const Header = () => {
 	const navigate = useNavigate()
+
 	const { pathname } = useLocation()
 	const { userData } = useUser() as { userData: UserData }
 

@@ -3,15 +3,17 @@ import { Navigate } from 'react-router-dom'
 
 import { Header } from './components'
 
-const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
+const PrivateRoutes = ({ children, isAdmin }: { children: React.ReactNode; isAdmin?: boolean }) => {
 	const token = localStorage.getItem('bigFomee: userData')
-	console.log(token)
 	if (!token) {
 		return <Navigate to="/login" replace />
 	}
+	if (isAdmin && !JSON.parse(token).admin) {
+		return <Navigate to="/" replace />
+	}
 	return (
 		<>
-			<Header />
+			{!isAdmin && <Header />}
 			{children}
 		</>
 	)
