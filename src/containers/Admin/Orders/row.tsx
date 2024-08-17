@@ -39,15 +39,37 @@ interface createDataProps {
 	user: UserProps
 }
 
-function Row(props: { row: createDataProps }) {
+interface OrderProps {
+	name: string
+	_id: string
+	createdAt: string
+	status: string
+	products: products[]
+	user: UserProps
+}
+
+function Row(props: {
+	row: createDataProps
+	orders: OrderProps[]
+	setOrders: React.Dispatch<React.SetStateAction<OrderProps[]>>
+}) {
 	const { row } = props
 	const [open, setOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
 
-	async function setNewStatus(id: string, status: string) {
+	async function setNewStatus(
+		id: string,
+		status: string,
+		orders: OrderProps[],
+		setOrders: React.Dispatch<React.SetStateAction<OrderProps[]>>,
+	) {
 		setLoading(true)
 		try {
 			await apiBigFomee.put(`orders/${id}`, { status })
+			const newOrders = orders.map((order) => {
+				return order._id === id ? { ...order, status } : order
+			})
+			setOrders(newOrders)
 		} catch (error) {
 			toast.error('Erro ao alterar status do pedido', {
 				theme: 'light',
@@ -81,13 +103,13 @@ function Row(props: { row: createDataProps }) {
 				<TableCell>{row.createdAt}</TableCell>
 				<TableCell>
 					<SelectStyled
-						options={OrderStatus}
+						options={OrderStatus.filter((status) => status.value !== 'Todos')}
 						menuPortalTarget={document.body}
 						placeholder="Selecione um status"
 						styles={{ input: (base) => ({ ...base, color: '#000', backgroundColor: 'transparent' }) }}
 						defaultValue={OrderStatus.find((status) => status.value === row.status || null)}
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
-						onChange={(newStatus) => setNewStatus(row._id, (newStatus as any).value)}
+						onChange={(newStatus) => setNewStatus(row._id, (newStatus as any).value, props.orders, props.setOrders)}
 						isLoading={loading}
 					/>
 				</TableCell>

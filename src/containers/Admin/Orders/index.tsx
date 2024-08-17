@@ -9,8 +9,9 @@ import { useEffect, useState } from 'react'
 
 import apiBigFomee from '../../../services/api'
 import formatDate from '../../../utils/formatDate'
+import OrderStatus from './Order-status'
 import Row from './row'
-import { Container } from './styles'
+import { Container, Menu, LinkMenu } from './styles'
 
 interface products {
 	category: string
@@ -36,13 +37,18 @@ interface OrderProps {
 }
 
 const Orders = () => {
-	const [orders, setOrders] = useState([])
+	const [orders, setOrders] = useState<OrderProps[]>([])
+	const [filteredOrders, setFilteredOrders] = useState<OrderProps[]>([])
+	const [activeStatus, setActiveStatus] = useState(0)
 	const [rows, setRows] = useState<OrderProps[]>([])
 	useEffect(() => {
 		apiBigFomee
 			?.get('orders')
 			.then((response) => response.data)
-			.then((data) => setOrders(data))
+			.then((data) => {
+				setOrders(data)
+				setFilteredOrders(data)
+			})
 			.catch((error) => console.error('Failed to fetch orders', error))
 	}, [])
 
@@ -58,11 +64,46 @@ const Orders = () => {
 	}
 
 	useEffect(() => {
-		setRows(orders.map((order) => createData(order)))
+		setRows(filteredOrders.map((order) => createData(order)))
+	}, [filteredOrders])
+
+	useEffect(() => {
+		if (activeStatus === 0) {
+			setFilteredOrders(orders)
+		} else {
+			const statusIndex = OrderStatus.findIndex((status) => status.id === activeStatus)
+			const newFilteredOrders = orders.filter((order) => order.status === OrderStatus[statusIndex].value)
+
+			setFilteredOrders(newFilteredOrders)
+		}
 	}, [orders])
+
+	function handleStatusOrders(status: { id: number; value: string }) {
+		if (status.id === 0) {
+			setFilteredOrders(orders)
+		} else {
+			const newOrders = orders.filter((order) => order.status === status.value)
+			setFilteredOrders(newOrders)
+		}
+
+		setActiveStatus(status.id)
+	}
 
 	return (
 		<Container>
+			<Menu>
+				{OrderStatus &&
+					OrderStatus.map((status: { id: number; value: string }) => (
+						<LinkMenu
+							key={status.id}
+							onClick={() => handleStatusOrders(status)}
+							isActiveStatus={activeStatus === status.id}
+						>
+							{status.value}
+						</LinkMenu>
+					))}
+			</Menu>
+
 			<TableContainer component={Paper} id="Container">
 				<Table aria-label="collapsible table">
 					<TableHead>
@@ -76,7 +117,7 @@ const Orders = () => {
 					</TableHead>
 					<TableBody>
 						{rows.map((row) => (
-							<Row key={row._id} row={row} />
+							<Row key={row._id} row={row} setOrders={setOrders} orders={orders} />
 						))}
 					</TableBody>
 				</Table>
