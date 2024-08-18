@@ -21,7 +21,7 @@ interface ProductProps {
 }
 
 const ListProducts = () => {
-	const [products, setProducts] = useState<ProductProps[]>([])
+	const [products, setProducts] = useState<ProductProps[]>()
 	useEffect(() => {
 		apiBigFomee
 			.get('products')
@@ -52,19 +52,20 @@ const ListProducts = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{products.map((product) => (
-							<TableRow key={product.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell align="center">{product.name}</TableCell>
-								<TableCell align="center">{formatCurrency(product.price)}</TableCell>
-								<TableCell align="center">{isOffer(product)}</TableCell>
-								<TableCell align="center">
-									<Img src={product.url} alt={product.name} />
-								</TableCell>
-								<TableCell align="center">
-									<EditIcons />
-								</TableCell>
-							</TableRow>
-						))}
+						{products &&
+							products.map((product) => (
+								<TableRow key={product.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+									<TableCell align="center">{product.name}</TableCell>
+									<TableCell align="center">{formatCurrency(product.price)}</TableCell>
+									<TableCell align="center">{isOffer(product)}</TableCell>
+									<TableCell align="center">
+										<Img src={product.url} alt={product.name} />
+									</TableCell>
+									<TableCell align="center">
+										<EditIcons />
+									</TableCell>
+								</TableRow>
+							))}
 					</TableBody>
 				</Table>
 			</TableContainer>

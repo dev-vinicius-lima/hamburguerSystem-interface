@@ -21,7 +21,8 @@ export const ItemContainer = styled.div<Props>`
 	width: 100%;
 	padding: 10px;
 	border-radius: 7px;
-	background-color: ${(props) => (props.isActive ? '#fa8b0d' : '#3c3c3c')};
+	background-color: ${(props) => (props.isActive ? '#fa8b0d' : '#fff')};
+	color: ${(props) => (props.isActive ? '#fff' : '#000')};
 	box-shadow: 0px 0px 14px rgba(255, 255, 255, 0.25);
 	display: flex;
 	align-items: center;
@@ -29,7 +30,7 @@ export const ItemContainer = styled.div<Props>`
 	gap: 5px;
 	#icon {
 		font-size: 30px;
-		color: #fff;
+		color: ${(props) => (props.isActive ? '#fff' : '#502314')};
 		transition: all 0.25s ease-in-out;
 	}
 	&:hover {
@@ -44,14 +45,13 @@ export const ItemContainer = styled.div<Props>`
 		}
 	}
 `
-
-export const LinkMenu = styled(Link)`
+export const LinkMenu = styled(Link)<Props>`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	color: #fff;
+	color: #502314;
 	font-weight: bold;
 	font-size: 20px;
 	transition: all 0.25s ease-in-out;

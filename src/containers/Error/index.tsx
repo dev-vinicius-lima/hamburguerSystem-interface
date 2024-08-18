@@ -1,6 +1,7 @@
 import { Link, useRouteError } from 'react-router-dom'
 
 import './styles.ts'
+import { Paths } from '../../Constants/Paths.ts'
 import { Container } from './styles.ts'
 
 export const NotFound = () => {
@@ -9,7 +10,7 @@ export const NotFound = () => {
 	return (
 		<Container>
 			<h1>Desculpe mas está página nao foi encontrada...</h1>
-			<Link to={'/login'} id="link">
+			<Link to={Paths.login} id="link">
 				Voltar para login
 			</Link>
 		</Container>

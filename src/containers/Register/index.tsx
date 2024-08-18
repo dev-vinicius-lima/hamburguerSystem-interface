@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import { Button } from '../../components'
+import { Paths } from '../../Constants/Paths'
 import apiBigFomee from '../../services/api'
 import { Container, RegisterImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
 
@@ -116,7 +117,7 @@ export function Register() {
 				</form>
 				<P>
 					Já possui uma conta?
-					<Link to={'/login'} id="SignLink">
+					<Link to={Paths.login} id="SignLink">
 						Entrar
 					</Link>
 				</P>

@@ -12,13 +12,13 @@ const MenuList = [
 	{
 		id: 2,
 		label: 'Produtos',
-		path: '/produtos',
+		path: '/listar-produtos',
 		icon: StoreIcon,
 	},
 	{
 		id: 3,
-		label: 'Estoque',
-		path: '/estoque',
+		label: 'Novo produto',
+		path: '/novo-produto',
 		icon: InventoryIcon,
 	},
 ]

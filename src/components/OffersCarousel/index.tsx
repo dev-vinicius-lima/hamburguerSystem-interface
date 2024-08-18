@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Paths } from '../../Constants/Paths'
 import { useCart } from '../../hooks/CartContext'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
@@ -77,7 +78,7 @@ export const OffersCarousel = () => {
 										</div>
 									</CardProduct>
 									<Link
-										to={'/carrinho'}
+										to={Paths.cart}
 										id="link"
 										onClick={() => {
 											putProductsInCart({ ...offer, quantity: 1 })

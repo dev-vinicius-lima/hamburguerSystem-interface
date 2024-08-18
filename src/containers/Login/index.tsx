@@ -5,6 +5,7 @@ import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import { Button } from '../../components'
+import { Paths } from '../../Constants/Paths'
 import { useUser } from '../../hooks/UserContext'
 import apiBigFomee from '../../services/api'
 import { Container, LoginImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
@@ -71,7 +72,7 @@ export function Login() {
 
 				setTimeout(() => {
 					{
-						data.admin ? navigation('/pedidos') : navigation('/')
+						data.admin ? navigation(Paths.orders) : navigation(Paths.home)
 					}
 				}, 1000)
 				notify()
@@ -112,7 +113,7 @@ export function Login() {
 				</form>
 				<P>
 					Não possui uma conta?
-					<Link to={'/cadastro'} id="SignLink">
+					<Link to={Paths.register} id="SignLink">
 						cadastre-se
 					</Link>
 				</P>

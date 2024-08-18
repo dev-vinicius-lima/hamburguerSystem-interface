@@ -2,6 +2,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { colors } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
+import { Paths } from '../../Constants/Paths'
 import MenuList from './MenuList'
 import { Container, ItemContainer, LinkMenu } from './styles'
 
@@ -11,7 +12,7 @@ export const SideMenuAdmin = () => {
 	const logoutUser = () => {
 		if (window.confirm('Deseja realmente sair?')) {
 			localStorage.removeItem('bigFomee: userData')
-			navigate('/login')
+			navigate(Paths.login)
 		} else {
 			return
 		}
@@ -21,7 +22,11 @@ export const SideMenuAdmin = () => {
 	return (
 		<Container>
 			{MenuList.map((item) => (
-				<ItemContainer key={item.id} isActive={item.path === window.location.pathname}>
+				<ItemContainer
+					key={item.id}
+					isActive={item.path === window.location.pathname}
+					onClick={() => navigate(item.path)}
+				>
 					{item.icon && <item.icon id="icon" />}
 					<LinkMenu to={item.path} id="label">
 						{item.label}
@@ -30,7 +35,7 @@ export const SideMenuAdmin = () => {
 			))}
 			<ItemContainer style={{ marginTop: '5rem' }} onClick={logoutUser}>
 				<LogoutIcon style={{ color: colors.red[500] }} />
-				<LinkMenu to={userData ? '' : '/login'} style={{ color: colors.red[500] }}>
+				<LinkMenu to={userData ? '' : Paths.login} style={{ color: colors.red[500] }}>
 					Sair
 				</LinkMenu>
 			</ItemContainer>

@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { Paths } from '../../Constants/Paths'
 import { useUser } from '../../hooks/UserContext'
 import { Icons } from '../Icons'
 import { Container, ContainerLeft, ContainerRigth, ContainerText, Line, PageLink } from './styles'
@@ -23,7 +24,7 @@ export const Header = () => {
 		const confirmationLogout = window.confirm('Deseja realmente sair?')
 		if (confirmationLogout) {
 			localStorage.removeItem('bigFomee: userData')
-			navigate('/login')
+			navigate(Paths.login)
 		}
 		isActiveLink
 		return
@@ -43,27 +44,27 @@ export const Header = () => {
 		<Container>
 			<ContainerLeft>
 				<PageLink>
-					<Link to={'/'} id="link" style={isActiveLink('/')}>
+					<Link to={Paths.home} id="link" style={isActiveLink(Paths.home)}>
 						Home
 					</Link>
 				</PageLink>
 				<PageLink>
-					<Link to={'/produtos'} id="link" style={isActiveLink('/produtos')}>
+					<Link to={Paths.products} id="link" style={isActiveLink(Paths.products)}>
 						Produtos
 					</Link>
 				</PageLink>
 			</ContainerLeft>
 
 			<ContainerRigth>
-				<PageLink style={{ color: pathname === '/produtos' ? '#fa8b0d' : '' }}>
-					<Link to={'/carrinho'} id="link">
+				<PageLink style={{ color: pathname === Paths.products ? '#fa8b0d' : '' }}>
+					<Link to={Paths.cart} id="link">
 						{Icons.cart}
 						{counterProductsInCart && <span>{counterProductsInCart()}</span>}
 					</Link>
 				</PageLink>
 				<Line></Line>
 				<PageLink>
-					<Link to={'/login'} id="link">
+					<Link to={Paths.login} id="link">
 						{Icons.person}
 					</Link>
 				</PageLink>

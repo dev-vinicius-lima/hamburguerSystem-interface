@@ -4,13 +4,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import GlobalStyles from '../public/styles/globalStyles.ts'
+import { Paths } from './Constants/Paths.ts'
 import { NotFound, Login, Register, Index, Products, Cart, Admin } from './containers'
 import { AppProvider } from './hooks'
 import PrivateRoutes from './PrivateRoutes.tsx'
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: Paths.home,
 		element: (
 			<PrivateRoutes>
 				<Index />
@@ -19,16 +20,16 @@ const router = createBrowserRouter([
 		errorElement: <NotFound />,
 	},
 	{
-		path: '/login',
+		path: Paths.login,
 		element: <Login />,
 		errorElement: <NotFound />,
 	},
 	{
-		path: '/cadastro',
+		path: Paths.register,
 		element: <Register />,
 	},
 	{
-		path: '/produtos',
+		path: Paths.products,
 		element: (
 			<PrivateRoutes>
 				<Products />,
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/carrinho',
+		path: Paths.cart,
 		element: (
 			<PrivateRoutes>
 				<Cart />
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/pedidos',
+		path: Paths.orders,
 		element: (
 			<PrivateRoutes isAdmin>
 				<Admin />
@@ -52,7 +53,15 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: 'listar-produtos',
+		path: Paths.listProduct,
+		element: (
+			<PrivateRoutes isAdmin>
+				<Admin />
+			</PrivateRoutes>
+		),
+	},
+	{
+		path: Paths.newProduct,
 		element: (
 			<PrivateRoutes isAdmin>
 				<Admin />

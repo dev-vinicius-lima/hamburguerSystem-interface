@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Navigation, Pagination, Scrollbar, Keyboard, Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Paths } from '../../Constants/Paths'
 import api from '../../services/api'
 import { Container, ContainerItens } from './styles'
 
@@ -24,7 +25,6 @@ export const CategoryCarousel = () => {
 		async function loadCategories() {
 			const { data } = await api.get('categories')
 			setCategories(data)
-			console.log(data)
 		}
 
 		loadCategories()
@@ -49,7 +49,7 @@ export const CategoryCarousel = () => {
 									<img src={category.url} alt="imagem do carrossel" id="image" />
 									<Link
 										to={{
-											pathname: '/produtos',
+											pathname: Paths.products,
 											search: `?category=${category.name}`,
 										}}
 										id="link"
