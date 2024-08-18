@@ -68,23 +68,15 @@ const Orders = () => {
 	}, [filteredOrders])
 
 	useEffect(() => {
-		if (activeStatus === 0) {
-			setFilteredOrders(orders)
-		} else {
-			const statusIndex = OrderStatus.findIndex((status) => status.id === activeStatus)
-			const newFilteredOrders = orders.filter((order) => order.status === OrderStatus[statusIndex].value)
+		const newFilteredOrders = orders.filter(
+			(order) => order.status === OrderStatus[activeStatus]?.value || activeStatus === 0,
+		)
 
-			setFilteredOrders(newFilteredOrders)
-		}
-	}, [orders])
+		setFilteredOrders(newFilteredOrders)
+	}, [orders, activeStatus])
 
 	function handleStatusOrders(status: { id: number; value: string }) {
-		if (status.id === 0) {
-			setFilteredOrders(orders)
-		} else {
-			const newOrders = orders.filter((order) => order.status === status.value)
-			setFilteredOrders(newOrders)
-		}
+		setFilteredOrders(orders.filter((order) => order.status === (status.id === 0 ? order.status : status.value)))
 
 		setActiveStatus(status.id)
 	}
