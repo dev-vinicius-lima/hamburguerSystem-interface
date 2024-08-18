@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+interface Props {
+	isActive?: boolean
+}
+
 export const Container = styled.div`
 	width: 220px;
 	min-height: 100vh;
@@ -8,29 +12,30 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 2rem 0.5rem;
+	padding: 7rem 0.5rem;
 	gap: 0.5rem;
 	z-index: 99;
 `
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.div<Props>`
 	width: 100%;
 	padding: 10px;
 	border-radius: 7px;
-	background-color: #fff;
-	box-shadow: 0px 0px 14px rgba(255, 255, 255, 0.35);
+	background-color: ${(props) => (props.isActive ? '#fa8b0d' : '#3c3c3c')};
+	box-shadow: 0px 0px 14px rgba(255, 255, 255, 0.25);
 	display: flex;
 	align-items: center;
 	padding: 10px;
 	gap: 5px;
 	#icon {
 		font-size: 30px;
-		color: #3c3c3c;
+		color: #fff;
 		transition: all 0.25s ease-in-out;
 	}
 	&:hover {
 		cursor: pointer;
 		transform: scale(1.03);
+		background-color: #fff;
 		#icon {
 			color: #fa8b0d;
 		}
@@ -46,7 +51,7 @@ export const LinkMenu = styled(Link)`
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	color: #3c3c3c;
+	color: #fff;
 	font-weight: bold;
 	font-size: 20px;
 	transition: all 0.25s ease-in-out;

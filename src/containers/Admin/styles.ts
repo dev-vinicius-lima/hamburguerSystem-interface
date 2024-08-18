@@ -2,8 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	min-height: 100vh;
 	width: 100%;
 	background-color: #efefef;
+`
+
+export const Wrapper = styled.div`
+	padding: 20px;
+	width: 100%;
 `

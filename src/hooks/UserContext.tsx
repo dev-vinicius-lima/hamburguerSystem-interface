@@ -7,6 +7,7 @@ interface UserProviderProps {
 
 interface putUserDataProps {
 	putUserData: (data: string) => void
+	logout: () => void
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {

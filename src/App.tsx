@@ -1,5 +1,4 @@
-import Login from './containers/Login'
-import Register from './containers/Register'
+import { Login, Register } from './containers'
 
 function App() {
 	return (

@@ -51,6 +51,14 @@ const router = createBrowserRouter([
 			</PrivateRoutes>
 		),
 	},
+	{
+		path: 'listar-produtos',
+		element: (
+			<PrivateRoutes isAdmin>
+				<Admin />
+			</PrivateRoutes>
+		),
+	},
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
