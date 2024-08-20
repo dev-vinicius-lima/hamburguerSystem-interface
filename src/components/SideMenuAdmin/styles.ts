@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface Props {
-	isActive?: boolean
+	isactive?: boolean
 }
 
 export const Container = styled.div`
@@ -21,8 +21,7 @@ export const ItemContainer = styled.div<Props>`
 	width: 100%;
 	padding: 10px;
 	border-radius: 7px;
-	background-color: ${(props) => (props.isActive ? '#fa8b0d' : '#fff')};
-	color: ${(props) => (props.isActive ? '#fff' : '#000')};
+	background-color: #fff;
 	box-shadow: 0px 0px 14px rgba(255, 255, 255, 0.25);
 	display: flex;
 	align-items: center;
@@ -30,7 +29,6 @@ export const ItemContainer = styled.div<Props>`
 	gap: 5px;
 	#icon {
 		font-size: 30px;
-		color: ${(props) => (props.isActive ? '#fff' : '#502314')};
 		transition: all 0.25s ease-in-out;
 	}
 	&:hover {

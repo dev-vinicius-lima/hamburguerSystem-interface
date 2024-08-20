@@ -7,7 +7,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { Paths } from '../../../Constants/Paths'
 import apiBigFomee from '../../../services/api'
 import formatCurrency from '../../../utils/formatCurrency'
 import { Container, Img, EditIcons } from './styles'
@@ -21,6 +23,7 @@ interface ProductProps {
 }
 
 const ListProducts = () => {
+	const navigation = useNavigate()
 	const [products, setProducts] = useState<ProductProps[]>()
 	useEffect(() => {
 		apiBigFomee
@@ -37,6 +40,12 @@ const ListProducts = () => {
 			return <>Não está na promoção</>
 		}
 	}
+
+	const editProduct = (product: ProductProps) => {
+		navigation(Paths.EditProducts, { state: product })
+	}
+
+	products?.sort((a, b) => (a.offer === b.offer ? 0 : a.offer ? -1 : 1))
 
 	return (
 		<Container>
@@ -62,7 +71,7 @@ const ListProducts = () => {
 										<Img src={product.url} alt={product.name} />
 									</TableCell>
 									<TableCell align="center">
-										<EditIcons />
+										<EditIcons onClick={() => editProduct(product)} />
 									</TableCell>
 								</TableRow>
 							))}

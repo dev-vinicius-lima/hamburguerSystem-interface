@@ -1,5 +1,6 @@
 import { SideMenuAdmin } from '../../components'
 import { Paths } from '../../Constants/Paths'
+import EditProduct from './EditProduct'
 import ListProducts from './ListProducts'
 import NewProduct from './NewProduct'
 import Orders from './Orders'
@@ -8,9 +9,11 @@ export const Admin = () => {
 	return (
 		<Container>
 			<SideMenuAdmin />
+
 			<Wrapper>
 				{window.location.pathname === Paths.orders && <Orders />}
 				{window.location.pathname === Paths.listProduct && <ListProducts />}
+				{window.location.pathname === Paths.EditProducts && <EditProduct />}
 				{window.location.pathname === Paths.newProduct && <NewProduct />}
 			</Wrapper>
 		</Container>

@@ -24,11 +24,20 @@ export const SideMenuAdmin = () => {
 			{MenuList.map((item) => (
 				<ItemContainer
 					key={item.id}
-					isActive={item.path === window.location.pathname}
+					style={item.path === window.location.pathname ? { backgroundColor: '#fa8b0d', color: '#fff' } : {}}
 					onClick={() => navigate(item.path)}
 				>
-					{item.icon && <item.icon id="icon" />}
-					<LinkMenu to={item.path} id="label">
+					{item.icon && (
+						<item.icon
+							id="icon"
+							style={item.path === window.location.pathname ? { color: '#fff' } : { color: '#502314' }}
+						/>
+					)}
+					<LinkMenu
+						to={item.path}
+						id="label"
+						style={item.path === window.location.pathname ? { color: '#fff' } : { color: '#502314' }}
+					>
 						{item.label}
 					</LinkMenu>
 				</ItemContainer>

@@ -65,3 +65,14 @@ export const Input = styled.input`
 	padding: 0 15px;
 	background-color: #f2e5d4;
 `
+
+export const ContainerCheckBox = styled.div`
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	input {
+		width: 15px;
+		height: 15px;
+		cursor: pointer;
+	}
+`

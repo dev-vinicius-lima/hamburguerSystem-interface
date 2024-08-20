@@ -3,6 +3,7 @@ export const Paths = {
 	login: '/login',
 	register: '/cadastro',
 	products: '/produtos',
+	EditProducts: '/editar-produtos',
 	error: '/error',
 	cart: '/carrinho',
 	orders: '/pedidos',

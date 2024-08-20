@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const ErrorMessageStyle = styled.p`
 	color: #cb1819;
-	font-weight: bold;
-	margin-bottom: 5px;
+	font-weight: 700;
+	margin-top: -15px;
+	margin-bottom: 10px;
 `

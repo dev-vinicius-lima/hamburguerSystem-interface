@@ -5,10 +5,6 @@ type CombinedProps = SelectProps & {
 	isOpen: boolean
 }
 
-interface LinkMenuProps {
-	isActiveStatus: boolean
-}
-
 export const Container = styled.div`
 	background-color: #efefef;
 	min-height: 100vh;
@@ -36,11 +32,8 @@ export const Menu = styled.div`
 	justify-content: center;
 	margin: 20px 0;
 `
-export const LinkMenu = styled.a<LinkMenuProps>`
+export const LinkMenu = styled.a`
 	color: #502314;
 	cursor: pointer;
-	font-weight: ${(props) => (props.isActiveStatus ? 'semibold' : 'normal')};
-	color: ${(props) => (props.isActiveStatus ? '#fa8b0d' : '#502314')};
-	border-bottom: ${(props) => (props.isActiveStatus ? '2px solid #fa8b0d' : 'none')};
 	padding-bottom: 5px;
 `

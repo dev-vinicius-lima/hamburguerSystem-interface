@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify'
 import GlobalStyles from '../public/styles/globalStyles.ts'
 import { Paths } from './Constants/Paths.ts'
 import { NotFound, Login, Register, Index, Products, Cart, Admin } from './containers'
+import EditProduct from './containers/Admin/EditProduct/index.tsx'
 import { AppProvider } from './hooks'
 import PrivateRoutes from './PrivateRoutes.tsx'
 
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
 		element: (
 			<PrivateRoutes isAdmin>
 				<Admin />
+			</PrivateRoutes>
+		),
+	},
+	{
+		path: Paths.EditProducts,
+		element: (
+			<PrivateRoutes isAdmin>
+				<EditProduct />
 			</PrivateRoutes>
 		),
 	},

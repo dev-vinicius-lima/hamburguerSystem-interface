@@ -89,7 +89,10 @@ const Orders = () => {
 						<LinkMenu
 							key={status.id}
 							onClick={() => handleStatusOrders(status)}
-							isActiveStatus={activeStatus === status.id}
+							style={{
+								color: activeStatus === status.id ? '#fa8b0d' : '#502314',
+								borderBottom: activeStatus === status.id ? '1px solid #fa8b0d' : '',
+							}}
 						>
 							{status.value}
 						</LinkMenu>
