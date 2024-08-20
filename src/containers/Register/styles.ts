@@ -123,12 +123,6 @@ export const Input = styled.input`
 	}
 `
 
-export const ErrorMessage = styled.p`
-	color: #cb1819;
-	font-weight: bold;
-	padding-bottom: 5px;
-`
-
 export const P = styled.p`
 	display: flex;
 	align-items: center;

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import { Button } from '../../components'
+import { Button, ErrorMessage } from '../../components'
 import { Paths } from '../../Constants/Paths'
 import apiBigFomee from '../../services/api'
-import { Container, RegisterImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
+import { Container, RegisterImage, ContainerItens, Input, Label, P } from './styles'
 
 interface Inputs {
 	name: string

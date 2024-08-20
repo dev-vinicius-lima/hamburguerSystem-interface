@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Bounce, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import { Button } from '../../components'
+import { Button, ErrorMessage } from '../../components'
 import { Paths } from '../../Constants/Paths'
 import { useUser } from '../../hooks/UserContext'
 import apiBigFomee from '../../services/api'
-import { Container, LoginImage, ContainerItens, Input, Label, P, ErrorMessage } from './styles'
+import { Container, LoginImage, ContainerItens, Input, Label, P } from './styles'
 
 interface Inputs {
 	email: string
