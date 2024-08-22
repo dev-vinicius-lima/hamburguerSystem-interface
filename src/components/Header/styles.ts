@@ -36,6 +36,8 @@ export const ContainerRigth = styled.div`
 	align-items: center;
 	gap: 1rem;
 	#link {
+		display: flex;
+		align-items: center;
 		color: #503114;
 		cursor: pointer;
 		text-decoration: none;

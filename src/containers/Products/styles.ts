@@ -59,7 +59,7 @@ export const ProductContainer = styled.div`
 	align-items: center;
 	gap: 1rem;
 	width: 100%;
-	padding: 1rem;
+	padding: 3rem;
 
 	@media screen and (min-width: 885px) {
 		grid-template-columns: repeat(2, 1fr);

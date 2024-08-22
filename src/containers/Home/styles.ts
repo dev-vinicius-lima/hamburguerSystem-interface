@@ -11,14 +11,19 @@ export const Container = styled.div`
 export const ContainerHeader = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	width: 100%;
 	max-height: 200px;
 	margin-bottom: 2rem;
-	margin-top: calc(100vh - 500px);
+	margin-top: calc(100vh - 550px);
 `
 
 export const ImgHome = styled.img`
 	width: 100%;
 	height: 500px;
-	/* object-fit: cover; */
+	object-fit: cover;
+
+	@media (min-width: 768px) {
+		width: 100%;
+	}
 `

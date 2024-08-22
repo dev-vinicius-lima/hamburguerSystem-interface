@@ -21,10 +21,10 @@ export const Container = styled.div`
 	div {
 		display: flex;
 		width: 100%;
-		padding: 10px;
+		padding: 15px;
 		flex-direction: column;
 		justify-content: space-between;
-		gap: 2rem;
+		gap: 1.5rem;
 		align-items: center;
 	}
 

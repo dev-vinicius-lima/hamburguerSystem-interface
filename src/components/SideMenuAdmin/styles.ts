@@ -15,6 +15,10 @@ export const Container = styled.div`
 	padding: 7rem 0.5rem;
 	gap: 0.5rem;
 	z-index: 99;
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
 `
 
 export const ItemContainer = styled.div<Props>`
@@ -22,15 +26,10 @@ export const ItemContainer = styled.div<Props>`
 	padding: 10px;
 	border-radius: 7px;
 	background-color: #fff;
-	box-shadow: 0px 0px 14px rgba(255, 255, 255, 0.25);
 	display: flex;
 	align-items: center;
 	padding: 10px;
 	gap: 5px;
-	#icon {
-		font-size: 30px;
-		transition: all 0.25s ease-in-out;
-	}
 	&:hover {
 		cursor: pointer;
 		transform: scale(1.03);
@@ -41,6 +40,10 @@ export const ItemContainer = styled.div<Props>`
 		#label {
 			color: #fa8b0d;
 		}
+	}
+	#icon {
+		font-size: 30px;
+		transition: all 0.25s ease-in-out;
 	}
 `
 export const LinkMenu = styled(Link)<Props>`
