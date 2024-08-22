@@ -15,6 +15,9 @@ export const Container = styled.div`
 		padding: 30px;
 		display: flex;
 		flex-direction: column;
+		@media screen and (max-width: 768px) {
+			width: 356px;
+		}
 		#button {
 			margin-top: 1.5rem;
 		}

@@ -49,9 +49,9 @@ const ListProducts = () => {
 
 	return (
 		<Container>
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="simple table">
-					<TableHead>
+			<TableContainer component={Paper} sx={{ width: '100%', overflow: 'auto' }}>
+				<Table sx={{ minWidth: 650 }} aria-label="simple table" size="small">
+					<TableHead sx={{ backgroundColor: '#f2e5d4'  }}>
 						<TableRow>
 							<TableCell align="center">Nome</TableCell>
 							<TableCell align="center">Preço</TableCell>
@@ -63,7 +63,7 @@ const ListProducts = () => {
 					<TableBody>
 						{products &&
 							products.map((product) => (
-								<TableRow key={product.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+								<TableRow key={product.id} >
 									<TableCell align="center">{product.name}</TableCell>
 									<TableCell align="center">{formatCurrency(product.price)}</TableCell>
 									<TableCell align="center">{isOffer(product)}</TableCell>
