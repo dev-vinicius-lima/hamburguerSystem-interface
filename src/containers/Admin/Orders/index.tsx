@@ -11,7 +11,7 @@ import apiBigFomee from '../../../services/api'
 import formatDate from '../../../utils/formatDate'
 import OrderStatus from './Order-status'
 import Row from './row'
-import { Container, Menu, LinkMenu } from './styles'
+import { Container, LinkMenu, Menu } from './styles'
 
 interface products {
 	category: string
@@ -83,28 +83,29 @@ const Orders = () => {
 
 	return (
 		<Container>
-			<Menu>
+					<Menu>
 				{OrderStatus &&
 					OrderStatus.map((status: { id: number; value: string }) => (
 						<LinkMenu
-							key={status.id}
-							onClick={() => handleStatusOrders(status)}
-							style={{
-								color: activeStatus === status.id ? '#fa8b0d' : '#502314',
-								borderBottom: activeStatus === status.id ? '1px solid #fa8b0d' : '',
-							}}
+						key={status.id}
+						onClick={() => handleStatusOrders(status)}
+						style={{
+							color: activeStatus === status.id ? '#fa8b0d' : '#502314',
+							borderBottom: activeStatus === status.id ? '1px solid #fa8b0d' : '',
+						}}
 						>
 							{status.value}
 						</LinkMenu>
 					))}
 			</Menu>
+		
 
-			<TableContainer component={Paper} id="Container">
+			<TableContainer component={Paper} id="ContainerTable">
 				<Table aria-label="collapsible table">
 					<TableHead>
 						<TableRow>
 							<TableCell />
-							<TableCell align="left">Pedido</TableCell>
+							{window.innerWidth > 600 && <TableCell align="left">Pedido</TableCell>}
 							<TableCell align="left">Cliente</TableCell>
 							<TableCell align="left">Data</TableCell>
 							<TableCell align="left">Status</TableCell>

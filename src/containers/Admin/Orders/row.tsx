@@ -98,7 +98,7 @@ function Row(props: {
 						{open ? <MdKeyboardArrowUp /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell>{row._id}</TableCell>
+				{window.innerWidth > 768 && <TableCell>{row._id}</TableCell>}
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{row.createdAt}</TableCell>
 				<TableCell>

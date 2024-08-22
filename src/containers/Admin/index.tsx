@@ -1,4 +1,4 @@
-import { SideMenuAdmin } from '../../components'
+import { SideMenuAdmin, SideMenuBottomAdmin } from '../../components'
 import { Paths } from '../../Constants/Paths'
 import EditProduct from './EditProduct'
 import ListProducts from './ListProducts'
@@ -8,9 +8,10 @@ import { Container, Wrapper } from './styles'
 export const Admin = () => {
 	return (
 		<Container>
-			<SideMenuAdmin />
+			{window.innerWidth >= 800 && <SideMenuAdmin />}
 
 			<Wrapper>
+				{window.innerWidth <= 768 && <SideMenuBottomAdmin />}
 				{window.location.pathname === Paths.orders && <Orders />}
 				{window.location.pathname === Paths.listProduct && <ListProducts />}
 				{window.location.pathname === Paths.EditProducts && <EditProduct />}
