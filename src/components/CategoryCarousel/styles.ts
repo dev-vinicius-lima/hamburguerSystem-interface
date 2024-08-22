@@ -6,19 +6,26 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	border-radius: 20px;
-	margin: 0.5rem 0rem;
+	margin: 3rem 0rem 0rem 0rem;
 	width: 95vw;
 	height: auto;
 	color: #fff;
 	gap: 2rem;
+
 	h1 {
+		background-color: #fe8824;
 		color: #502314;
 		font-weight: bold;
 		font-size: 45px;
 		text-align: center;
 		margin: 10px 0px;
-		padding: 10px 20px;
-		border-radius: 10px;
+		padding: 10px 40px;
+		border-radius: 50px 0;
+	}
+
+	.swiper-wrapper {
+		display: flex;
+		justify-content: center;
 	}
 
 	.swiper-pagination-bullet {
@@ -36,9 +43,10 @@ export const Container = styled.div`
 export const ContainerItens = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	gap: 1rem;
-	height: 500px;
+	height: 400px;
 	padding: 0px 10px;
 
 	#link {

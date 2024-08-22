@@ -12,13 +12,13 @@ export const ContainerHeader = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	max-height: 340px;
+	max-height: 200px;
 	margin-bottom: 2rem;
-	margin-top: calc(100vh - 935px);
+	margin-top: calc(100vh - 500px);
 `
 
 export const ImgHome = styled.img`
 	width: 100%;
-	height: 400px;
-	object-fit: cover;
+	height: 500px;
+	/* object-fit: cover; */
 `

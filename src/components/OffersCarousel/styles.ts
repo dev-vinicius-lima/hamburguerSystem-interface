@@ -9,17 +9,22 @@ export const Container = styled.div`
 	width: 95vw;
 	height: auto;
 	color: #fff;
-	gap: 2rem;
+	margin: 2rem 0rem 0rem 0rem;
 	h1 {
+		background-color: #fe8824;
 		color: #502314;
 		font-weight: bold;
 		font-size: 45px;
 		text-align: center;
 		margin: 10px 0px;
-		padding: 10px 20px;
-		border-radius: 10px;
+		padding: 10px 60px;
+		border-radius: 50px 0;
 	}
 
+	.swiper {
+		width: 100%;
+		height: 700px;
+	}
 	.swiper-pagination-bullet {
 		background-color: #000;
 		width: 60px;
@@ -33,11 +38,17 @@ export const Container = styled.div`
 `
 
 export const ContainerItens = styled.div`
+	background-color: #fff;
+	box-shadow: 0px 0px 5px 0px rgba(87, 87, 87, 0.3);
 	display: flex;
 	flex-direction: column;
-	align-items: start;
-	gap: 1rem;
-	padding: 0px 10px;
+	align-items: center;
+	justify-content: flex-start;
+	height: 450px;
+	border-radius: 10px;
+	gap: 5rem;
+	padding: 10px;
+	margin-top: 1rem;
 
 	#link {
 		width: 100%;
@@ -70,7 +81,7 @@ export const ContainerItens = styled.div`
 	}
 	#image {
 		width: 100%;
-		height: 290px;
+		min-height: 300px;
 		border-radius: 10px;
 		object-fit: cover;
 
@@ -85,18 +96,19 @@ export const ContainerItens = styled.div`
 export const CardProduct = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: starts;
-	justify-content: center;
+	align-items: center;
+	/* justify-content: center; */
 	border-radius: 10px;
 	width: 100%;
-	height: 100%;
+	height: 60%;
 	background-color: #f2e5d4;
 	div {
+		background-color: #fff;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 		width: 100%;
-		padding: 5px;
+		padding: 10px 0px;
 	}
 	p {
 		color: #502314;

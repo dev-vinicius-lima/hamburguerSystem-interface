@@ -14,12 +14,20 @@ export const Container = styled.div`
 	box-shadow: 0px 0px 10px 0px rgba(87, 87, 87, 0.4);
 	position: fixed;
 	z-index: 50;
+
+	@media screen and (max-width: 768px) {
+		padding: 1rem 0.5rem;
+	}
 `
 export const ContainerLeft = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap: 2rem;
+
+	@media screen and (max-width: 768px) {
+		gap: 1rem;
+	}
 `
 
 export const ContainerRigth = styled.div`
@@ -36,10 +44,15 @@ export const ContainerRigth = styled.div`
 		&:hover {
 			color: #fa8b0d;
 		}
+
+		@media screen and (max-width: 768px) {
+			font-size: medium;
+			gap: 0;
+		}
 	}
 `
 
-export const PageLink = styled.a`
+export const PageLink = styled.div`
 	#link {
 		display: flex;
 		align-items: center;
@@ -53,6 +66,12 @@ export const PageLink = styled.a`
 			color: #fa8b0d;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		font-size: medium;
+		gap: 0;
+		display: flex;
+		align-items: center;
+	}
 `
 
 export const ContainerText = styled.div`
@@ -62,6 +81,12 @@ export const ContainerText = styled.div`
 	align-items: start;
 	gap: 5px;
 	font-size: 18px;
+
+	@media screen and (max-width: 768px) {
+		p {
+			display: none;
+		}
+	}
 `
 export const Line = styled.div`
 	height: 40px;

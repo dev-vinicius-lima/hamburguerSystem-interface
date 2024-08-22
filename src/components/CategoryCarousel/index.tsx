@@ -37,7 +37,7 @@ export const CategoryCarousel = () => {
 				<Swiper
 					modules={[Navigation, Pagination, Scrollbar, Keyboard, Autoplay]}
 					spaceBetween={20}
-					autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+					autoplay={{ delay: 1500, disableOnInteraction: false, pauseOnMouseEnter: false }}
 					pagination={{ clickable: true }}
 					slidesPerView={window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 4}
 					style={{ color: '#fff', width: '100%', height: '410px' }}

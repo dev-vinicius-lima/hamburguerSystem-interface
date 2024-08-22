@@ -9,15 +9,19 @@ export const Container = styled.div`
 	border-radius: 10px;
 	height: 220px;
 	width: 400px;
-	gap: 1rem;
 
 	img {
 		width: 200px;
-		border-radius: 5px;
+		height: 200px;
+		object-fit: cover;
+		padding: 10px;
+		border-radius: 15px;
 	}
 
 	div {
 		display: flex;
+		width: 100%;
+		padding: 10px;
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 2rem;
@@ -47,5 +51,11 @@ export const Container = styled.div`
 		}
 	}
 `
-export const ProductName = styled.p``
+export const ProductName = styled.p`
+	text-align: center;
+	background-color: #f2e5d4;
+	padding: 5px;
+	border-radius: 15px 0;
+	width: 100%;
+`
 export const ProductPrice = styled.p``

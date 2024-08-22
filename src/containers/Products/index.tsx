@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import logoHome from '../../assets/bannerHamburguer.png'
+import logoHome from '../../assets/bannerProducts.jpg'
 import { CardProducts } from '../../components'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'

@@ -31,9 +31,9 @@ export const CategoryMenu = styled.div`
 	width: 95%;
 	margin-bottom: 1rem;
 
-	@media screen and (min-width: 768px) {
-		gap: 1.8rem;
-		width: 65%;
+	@media screen and (max-width: 768px) {
+		gap: 0.5rem;
+		width: 100%;
 	}
 
 	@media screen and (min-width: 1300px) {
@@ -66,6 +66,10 @@ export const ProductContainer = styled.div`
 	}
 
 	@media screen and (min-width: 1300px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@media screen and (min-width: 1600px) {
 		grid-template-columns: repeat(4, 1fr);
 	}
 `
