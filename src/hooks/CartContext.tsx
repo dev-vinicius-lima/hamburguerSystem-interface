@@ -5,6 +5,7 @@ interface CartContextProps {
 	cartProducts: Product[]
 	increaseProductsQuantity: (productId: Product) => void
 	decreaseProductsQuantity: (productId: Product) => void
+	quantityCartProducts: number
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined)
@@ -24,6 +25,7 @@ interface Product {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [cartProducts, setCartProdutcs] = useState<Product[]>([])
+	const [quantityCartProducts, setQuantityCartProducts] = useState<number>(0)
 
 	const updateLocalStorage = async (product: Product[]) => {
 		await localStorage.setItem('bigFomee: CartInfo', JSON.stringify(product))
@@ -37,16 +39,20 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	const putProductsInCart = async (product: Product) => {
 		const cartIndex = cartProducts.findIndex((pdt) => pdt.id === product.id)
+
 		let newCartProducts = []
 		if (cartIndex >= 0) {
 			newCartProducts = cartProducts
+			const quantityCartProducts = cartProducts.length
 			newCartProducts[cartIndex].quantity += 1
 			setCartProdutcs(newCartProducts)
+			setQuantityCartProducts(quantityCartProducts)
 		} else {
 			product.quantity = 1
 			newCartProducts = [...cartProducts, product]
 			setCartProdutcs(newCartProducts)
 		}
+
 		updateLocalStorage(newCartProducts)
 	}
 
@@ -93,7 +99,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	return (
 		<CartContext.Provider
-			value={{ putProductsInCart, cartProducts, increaseProductsQuantity, decreaseProductsQuantity }}
+			value={{
+				putProductsInCart,
+				cartProducts,
+				increaseProductsQuantity,
+				decreaseProductsQuantity,
+				quantityCartProducts,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

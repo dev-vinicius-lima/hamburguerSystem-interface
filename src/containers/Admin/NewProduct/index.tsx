@@ -58,13 +58,11 @@ const NewProduct = () => {
 	}, [])
 
 	const onSubmitForm = async (data: Inputs) => {
-		console.log('data form', data)
 		const productDataFormData = new FormData()
 		productDataFormData.append('name', data.name)
 		productDataFormData.append('price', data.price)
 		productDataFormData.append('category_id', data.category_id.toString())
 		productDataFormData.append('file', data.file[0])
-		console.log('productDataFormData ===', productDataFormData)
 
 		if (!data.file[0]) {
 			toast.error('Selecione uma imagem!')

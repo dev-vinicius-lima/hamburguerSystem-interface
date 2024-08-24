@@ -4,6 +4,7 @@ import { Paths } from '../../Constants/Paths'
 import { useUser } from '../../hooks/UserContext'
 import { Icons } from '../Icons'
 import { Container, ContainerLeft, ContainerRigth, ContainerText, Line, PageLink } from './styles'
+import { useCart } from '../../hooks/CartContext'
 
 interface UserData {
 	name: string
@@ -15,6 +16,7 @@ export const Header = () => {
 
 	const { pathname } = useLocation()
 	const { userData } = useUser() as { userData: UserData }
+	const { quantityCartProducts } = useCart()
 
 	const isActiveLink = (link: string) => {
 		return pathname === link ? { color: '#fa8b0d' } : {}
@@ -59,7 +61,7 @@ export const Header = () => {
 				<PageLink style={{ color: pathname === Paths.products ? '#fa8b0d' : '' }}>
 					<Link to={Paths.cart} id="link">
 						{Icons.cart}
-						{counterProductsInCart && <span>{counterProductsInCart()}</span>}
+						{quantityCartProducts > 0 && <div id="counter">{counterProductsInCart()}</div>}
 					</Link>
 				</PageLink>
 				<Line></Line>

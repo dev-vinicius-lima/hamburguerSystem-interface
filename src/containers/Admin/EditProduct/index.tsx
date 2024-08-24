@@ -36,7 +36,6 @@ const schema = Yup.object().shape({
 const EditProduct = () => {
 	const navigate = useNavigate()
 	const { state } = useLocation()
-	console.log(' state =>', state)
 
 	const [filename, setFilename] = useState('')
 	const [category, setCategory] = useState<CategoryProps[]>([])

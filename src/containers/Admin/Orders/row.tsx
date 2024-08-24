@@ -61,7 +61,7 @@ function Row(props: {
 		id: string,
 		status: string,
 		orders: OrderProps[],
-		setOrders: React.Dispatch<React.SetStateAction<OrderProps[]>>,
+		setOrders: React.Dispatch<React.SetStateAction<OrderProps[]>>
 	) {
 		setLoading(true)
 		try {
@@ -74,7 +74,6 @@ function Row(props: {
 			toast.error('Erro ao alterar status do pedido', {
 				theme: 'light',
 			})
-			console.log(error)
 		} finally {
 			setLoading(false)
 			if (apiBigFomee !== undefined) {
